@@ -1,33 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Image Upload</title>
-  <link rel="stylesheet" href="pro.css">
-</head>
-<body>
-  <h2>Upload Image from Gallery</h2>
-  <form id="uploadForm">
-    <input type="file" id="imageUpload" accept="image/*" />
-    <br><br>
-    <img id="preview" src="#" alt="Image Preview" style="display:none; max-width: 300px;" />
-  </form>
+    <meta charset="UTF-8">
+    <title>Image Upload</title>
 
-  <script>
-    const imageInput = document.getElementById('imageUpload');
-    const preview = document.getElementById('preview');
-
-    imageInput.addEventListener('change', function () {
-      const file = this.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          preview.src = e.target.result;
-          preview.style.display = 'block';
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413');
+            /* Replace with your own image URL if needed */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        reader.readAsDataURL(file);
-      }
-    });
-  </script>
+
+        form {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            color: #fff;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h2 {
+            color: aliceblue;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        input[type="file"] {
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.25);
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #fff;
+            width: 100%;
+        }
+
+        input[type="file"]::file-selector-button {
+            background-color: #ffffff55;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        img#preview {
+            margin-top: 20px;
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Upload Image from Gallery</h2>
+    <form id="uploadForm">
+        <input type="file" id="imageUpload" accept="image/*" />
+        <br><br>
+        <img id="preview" src="#" alt="Image Preview" style="display:none; max-width: 300px;" />
+    </form>
+
+    <script>
+        const imageInput = document.getElementById('imageUpload');
+        const preview = document.getElementById('preview');
+
+        imageInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 </body>
+
 </html>
